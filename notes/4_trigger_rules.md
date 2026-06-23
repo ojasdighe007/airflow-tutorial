@@ -14,7 +14,7 @@ A task's `trigger_rule` applies **uniformly to all of its upstream tasks**. Ther
 Insert a small **buffer (absorber) task** downstream of task4. It runs regardless of task4's state (`trigger_rule="all_done"`) and always succeeds. Then `task5` keeps the default `all_success` rule against task2, task3, and the buffer — never task4 directly.
 
 ```python
-from airflow.utils.trigger_rule import TriggerRule
+from airflow.task.trigger_rule import TriggerRule
 
 @task.python(trigger_rule=TriggerRule.ALL_DONE)  # runs even if task4 failed
 def task4_buffer():
@@ -25,7 +25,8 @@ t4 >> t4b               # buffer absorbs task4's outcome
 [t2, t3, t4b] >> t5     # task5 = all_success over task2, task3, buffer
 ```
 
-See `dags/06_trigger_rules.py` for the full DAG.
+See the buffer (absorber) pattern at the bottom of `dags/19_trigger_rules.py`
+(`t_solid` / `t_flaky` / `t_flaky_buffer` / `t_join`) for the full DAG.
 
 ## Why it works
 
