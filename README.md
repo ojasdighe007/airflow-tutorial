@@ -117,6 +117,30 @@ airflow version                          # confirms apache-airflow==3.1.6
 
 ---
 
+## Topics covered
+
+Each DAG in `dags/` has a matching write-up in `notes/`.
+
+| DAG (`dags/`) | Topic | Notes (`notes/`) |
+| --- | --- | --- |
+| `1_first_dag.py`, `2_dag_versioning.py` | First DAG, versioning | `1_first_dag.md`, `2_airflow_3x_architecture.md` |
+| `03_operators.py` | Operators (`@task.python` / `@task.bash`) | - |
+| `04_xcoms_auto.py`, `05_xcoms_kwargs.py` | XComs (TaskFlow vs manual), `**kwargs` context | `3_xcoms.md` |
+| `06_parallel_tasks.py`, `07_conditional_branches.py` | Parallel fan-out, branching, trigger rules | `4_trigger_rules.md`, `5_parallel_and_branching.md` |
+| `08_schedule_preset.py`, `09_schedule_cron.py`, `10_schedule_delta.py`, `12_special_dates.py` | Scheduling: presets, cron, delta, events | `6_scheduling.md` |
+| `11_incremental_load.py` | Incremental loads via `data_interval_*` | `7_incremental_load.md` |
+| `13_sensors.py` | Sensors (poke vs reschedule) | `8_sensors.md` |
+| `14_dynamic_task_mapping.py` | Dynamic task mapping (`.expand` / `.partial`) | `9_dynamic_task_mapping.md` |
+| `15_taskgroups.py` | TaskGroups | `10_taskgroups.md` |
+| `16_connections_hooks.py` | Connections, Hooks, Variables | `11_connections_hooks.md` |
+| `17_callbacks_retries.py`, `18_pools_concurrency.py` | Retries/backoff, callbacks, pools, concurrency | `12_reliability.md` |
+| `19_trigger_rules.py` | Trigger rules (`all_done`, `one_failed`, branch joins, ...) | `4_trigger_rules.md`, `13_trigger_rules.md` |
+
+> Some DAGs (connections/hooks, sensors, pools) are **illustrative** - they reference
+> connections, files, or pools that must be configured in Airflow before they run.
+
+---
+
 ## Managing dependencies
 
 This is a uv project. To add a package:
